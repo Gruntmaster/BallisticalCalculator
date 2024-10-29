@@ -61,7 +61,7 @@
             groupBox2.Size = new Size(334, 450);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Wyniki";
+            groupBox2.Text = "Results";
             // 
             // outputTextBox
             // 
@@ -83,7 +83,7 @@
             groupBox3.Size = new Size(200, 450);
             groupBox3.TabIndex = 5;
             groupBox3.TabStop = false;
-            groupBox3.Text = "Dodane objekty";
+            groupBox3.Text = "Added objects";
             // 
             // listBox
             // 
@@ -115,7 +115,7 @@
             groupBox1.Size = new Size(266, 450);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Opcje";
+            groupBox1.Text = "Options";
             // 
             // label3
             // 
