@@ -36,27 +36,33 @@ namespace BallisticalCalculator
             MessageBox.Show("Properties of bullet were saved in bullets.csv");
         }
 
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            // Update ListBox
+            UpdateListBox();
+        }
+
         private void UpdateListBox()
         {
-            // Clear ListBox before updating
+            // Clear ListBox
             listBox.Items.Clear();
 
             string filePath = @"C:\Users\Msi\source\repos\BallisticalCalculator\BallisticalCalculator\bullets.csv";
 
-            // Does file exist
+            // Does File Exist
             if (File.Exists(filePath))
             {
-                //Read lines and add them to listBox
+                // Read lines and add them to ListBox
                 string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
 
                 foreach (string line in lines)
                 {
-                    listBox.Items.Add(line);  //add each line in csv file
+                    listBox.Items.Add(line);  // Adding each line to ListBox
                 }
             }
             else
             {
-                MessageBox.Show("There is no CSV file");
+                MessageBox.Show("CSV file not found");
             }
         }
     }

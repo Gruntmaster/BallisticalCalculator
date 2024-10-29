@@ -58,7 +58,7 @@
             groupBox2.Font = new Font("Consolas", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
             groupBox2.Location = new Point(266, 0);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(334, 450);
+            groupBox2.Size = new Size(361, 450);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "Results";
@@ -70,7 +70,7 @@
             outputTextBox.Multiline = true;
             outputTextBox.Name = "outputTextBox";
             outputTextBox.ScrollBars = ScrollBars.Vertical;
-            outputTextBox.Size = new Size(328, 428);
+            outputTextBox.Size = new Size(355, 428);
             outputTextBox.TabIndex = 0;
             // 
             // groupBox3
@@ -78,9 +78,9 @@
             groupBox3.Controls.Add(listBox);
             groupBox3.Dock = DockStyle.Right;
             groupBox3.Font = new Font("Consolas", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            groupBox3.Location = new Point(600, 0);
+            groupBox3.Location = new Point(627, 0);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(200, 450);
+            groupBox3.Size = new Size(347, 450);
             groupBox3.TabIndex = 5;
             groupBox3.TabStop = false;
             groupBox3.Text = "Added objects";
@@ -93,7 +93,7 @@
             listBox.Location = new Point(3, 19);
             listBox.Name = "listBox";
             listBox.ScrollAlwaysVisible = true;
-            listBox.Size = new Size(194, 428);
+            listBox.Size = new Size(341, 428);
             listBox.TabIndex = 0;
             // 
             // groupBox1
@@ -191,6 +191,7 @@
             buttonRefresh.TabIndex = 1;
             buttonRefresh.Text = "Refresh";
             buttonRefresh.UseVisualStyleBackColor = true;
+            buttonRefresh.Click += buttonRefresh_Click;
             // 
             // buttonCreateNew
             // 
@@ -206,7 +207,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(974, 450);
             Controls.Add(groupBox2);
             Controls.Add(groupBox3);
             Controls.Add(groupBox1);
