@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallisticalCalculator", "BallisticalCalculator\BallisticalCalculator.csproj", "{DE156F04-EEBE-4740-B00F-450602836EC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE156F04-EEBE-4740-B00F-450602836EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE156F04-EEBE-4740-B00F-450602836EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE156F04-EEBE-4740-B00F-450602836EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE156F04-EEBE-4740-B00F-450602836EC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {352A8FE1-02CA-4A9D-8AE5-C48488AA0FA1}
+	EndGlobalSection
+EndGlobal
