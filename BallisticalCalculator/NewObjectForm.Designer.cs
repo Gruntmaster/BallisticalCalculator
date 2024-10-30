@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
+            textBoxNewObjectWindow = new TextBox();
             numericUpDown1 = new NumericUpDown();
             numericUpDown2 = new NumericUpDown();
             numericUpDown3 = new NumericUpDown();
@@ -42,12 +42,12 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
             SuspendLayout();
             // 
-            // textBox1
+            // textBoxNewObjectWindow
             // 
-            textBox1.Location = new Point(166, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(163, 23);
-            textBox1.TabIndex = 0;
+            textBoxNewObjectWindow.Location = new Point(166, 30);
+            textBoxNewObjectWindow.Name = "textBoxNewObjectWindow";
+            textBoxNewObjectWindow.Size = new Size(163, 23);
+            textBoxNewObjectWindow.TabIndex = 0;
             // 
             // numericUpDown1
             // 
@@ -78,6 +78,7 @@
             buttonNewObjectFormSave.TabIndex = 4;
             buttonNewObjectFormSave.Text = "Save";
             buttonNewObjectFormSave.UseVisualStyleBackColor = true;
+            buttonNewObjectFormSave.Click += buttonSave_Click;
             // 
             // label1
             // 
@@ -128,7 +129,7 @@
             Controls.Add(numericUpDown3);
             Controls.Add(numericUpDown2);
             Controls.Add(numericUpDown1);
-            Controls.Add(textBox1);
+            Controls.Add(textBoxNewObjectWindow);
             Name = "NewObjectForm";
             Text = "NewObjectForm";
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
@@ -140,7 +141,7 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox textBoxNewObjectWindow;
         private NumericUpDown numericUpDown1;
         private NumericUpDown numericUpDown2;
         private NumericUpDown numericUpDown3;

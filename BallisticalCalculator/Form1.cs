@@ -12,28 +12,14 @@ namespace BallisticalCalculator
 
         private void buttonCreateNew_Click(object sender, EventArgs e)
         {
-            string filePath = @"C:\Users\Msi\source\repos\BallisticalCalculator\BallisticalCalculator\bullets.csv";
-
-            int muzzleVelocity = (int)numericUpDown3.Value;
-            double ballisticCoefficient = (double)numericUpDown2.Value;
-            int distanceToTarget = (int)numericUpDown1.Value;
-
-            string newBullet = $"{muzzleVelocity},{ballisticCoefficient},{distanceToTarget}";
-
-            bool fileExists = File.Exists(filePath);
-
-            using (StreamWriter writer = new StreamWriter(filePath, true, Encoding.UTF8))
+            using (NewObjectForm createNewObjectForm = new NewObjectForm())
             {
-                if (!fileExists)
-                {
-                    writer.WriteLine("Muzzle Velocity,Ballistic Coefficient,Distance to Target");
-                }
-                writer.WriteLine(newBullet);
+                //Open
+                createNewObjectForm.ShowDialog();
             }
 
+            //Close and Save
             UpdateListBox();
-
-            MessageBox.Show("Properties of bullet were saved in bullets.csv");
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
