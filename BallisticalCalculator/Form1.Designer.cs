@@ -33,6 +33,7 @@
             groupBox3 = new GroupBox();
             listBox = new ListBox();
             groupBox1 = new GroupBox();
+            buttonDelete = new Button();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -98,6 +99,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(buttonDelete);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
@@ -116,6 +118,16 @@
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = "Options";
+            // 
+            // buttonDelete
+            // 
+            buttonDelete.Location = new Point(29, 209);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Size = new Size(148, 33);
+            buttonDelete.TabIndex = 10;
+            buttonDelete.Text = "Delete Object";
+            buttonDelete.UseVisualStyleBackColor = true;
+            buttonDelete.Click += buttonDelete_Click;
             // 
             // label3
             // 
@@ -182,6 +194,7 @@
             buttonEditObject.TabIndex = 2;
             buttonEditObject.Text = "Edit";
             buttonEditObject.UseVisualStyleBackColor = true;
+            buttonEditObject.Click += buttonEditObject_Click;
             // 
             // buttonRefresh
             // 
@@ -241,5 +254,6 @@
         private Button buttonEditObject;
         private Button buttonRefresh;
         private Button buttonCreateNew;
+        private Button buttonDelete;
     }
 }
