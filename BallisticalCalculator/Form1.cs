@@ -37,19 +37,27 @@ namespace BallisticalCalculator
             string filePath = @"C:\Users\Msi\source\repos\BallisticalCalculator\BallisticalCalculator\bullets.csv";
 
             // Does File Exist
-            if (File.Exists(filePath))
-            {
-                // Read lines and add them to ListBox
-                string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
-
-                foreach (string line in lines)
-                {
-                    listBox.Items.Add(line);  // Adding each line to ListBox
-                }
-            }
-            else
+            if (!File.Exists(filePath))
             {
                 MessageBox.Show("CSV file not found");
+                return;
+
+            }
+
+            // Read lines and add them to ListBox
+            string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
+
+            // Пропускаем первую строку с заголовком и добавляем только название в ListBox
+            foreach (string line in lines.Skip(1)) // Начинаем со второй строки, чтобы пропустить заголовок
+            {
+                // Разделяем строку по запятым, чтобы получить поля
+                var fields = line.Split(',');
+
+                if (fields.Length > 0)
+                {
+                    // Добавляем только название (первый элемент) в ListBox
+                    listBox.Items.Add(fields[0]);
+                }
             }
         }
 
@@ -58,20 +66,48 @@ namespace BallisticalCalculator
             // Проверяем, выбран ли объект в ListBox
             if (listBox.SelectedItem != null)
             {
-                // Получаем выбранную строку из ListBox
-                string selectedLine = listBox.SelectedItem.ToString();
+                // Получаем выбранное название из ListBox
+                string selectedName = listBox.SelectedItem.ToString();
 
-                // Разделяем строку для получения параметров
-                string[] parameters = selectedLine.Split(',');
+                // Путь к файлу
+                string filePath = @"C:\Users\Msi\source\repos\BallisticalCalculator\BallisticalCalculator\bullets.csv";
 
-                // Создаем и отображаем форму для редактирования с текущими значениями
-                using (NewObjectForm createNewForm = new NewObjectForm(parameters))
+                // Проверяем, существует ли файл
+                if (!File.Exists(filePath))
                 {
-                    createNewForm.ShowDialog();
+                    MessageBox.Show("CSV файл не найден. Нечего редактировать.");
+                    return;
                 }
 
-                // Обновляем ListBox после закрытия формы, чтобы отобразить изменения
-                UpdateListBox();
+                // Читаем все строки и находим запись с нужным названием
+                string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
+                string[] parameters = null;
+
+                foreach (string line in lines.Skip(1)) // Пропускаем заголовок
+                {
+                    var fields = line.Split(',');
+                    if (fields.Length > 0 && fields[0] == selectedName) // Сравниваем название
+                    {
+                        parameters = fields; // Сохраняем параметры, если нашли
+                        break;
+                    }
+                }
+
+                if (parameters != null)
+                {
+                    // Создаем форму CreateNewForm с текущими параметрами для редактирования
+                    using (NewObjectForm createNewForm = new NewObjectForm(parameters))
+                    {
+                        createNewForm.ShowDialog();
+                    }
+
+                    // Обновляем ListBox после закрытия формы, чтобы отобразить изменения
+                    UpdateListBox();
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось найти выбранный объект в CSV файле.");
+                }
             }
             else
             {
@@ -130,6 +166,65 @@ namespace BallisticalCalculator
             // Записываем все строки обратно в файл
             File.WriteAllLines(filePath, lines, Encoding.UTF8);
         }
+
+        private void listBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Проверяем, выбран ли элемент
+            if (listBox.SelectedItem == null)
+            {
+                ClearParameterFields();
+                return;
+            }
+
+            // Получаем выбранное название
+            string selectedName = listBox.SelectedItem.ToString();
+
+            // Путь к файлу
+            string filePath = @"C:\Users\Msi\source\repos\BallisticalCalculator\BallisticalCalculator\bullets.csv";
+
+            // Проверяем, существует ли файл
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("CSV файл не найден. Невозможно отобразить параметры.");
+                return;
+            }
+
+            // Читаем файл и ищем запись с выбранным названием
+            string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
+            string[] parameters = null;
+
+            foreach (string line in lines.Skip(1)) // Пропускаем заголовок
+            {
+                var fields = line.Split(',');
+                if (fields.Length >= 4 && fields[0] == selectedName) // Проверяем название
+                {
+                    parameters = fields;
+                    break;
+                }
+            }
+
+            if (parameters != null)
+            {
+                // Обновляем поля параметров на форме
+                numericUpDown3.Text = parameters[1]; // Muzzle Velocity
+                numericUpDown2.Text = parameters[2]; // Ballistic Coefficient
+                numericUpDown1.Text = parameters[3]; // Distance to Target
+            }
+            else
+            {
+                ClearParameterFields();
+                MessageBox.Show("Не удалось найти выбранный объект в CSV файле.");
+            }
+        }
+
+        // Метод для очистки полей параметров
+        private void ClearParameterFields()
+        {
+            numericUpDown3.Text = "";
+            numericUpDown2.Text = "";
+            numericUpDown1.Text = "";
+        }
+
 
     }
 }

@@ -96,6 +96,7 @@
             listBox.ScrollAlwaysVisible = true;
             listBox.Size = new Size(341, 428);
             listBox.TabIndex = 0;
+            listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;
             // 
             // groupBox1
             // 
@@ -159,21 +160,27 @@
             // numericUpDown3
             // 
             numericUpDown3.Location = new Point(178, 298);
+            numericUpDown3.Maximum = new decimal(new int[] { 1874919423, 2328306, 0, 0 });
             numericUpDown3.Name = "numericUpDown3";
+            numericUpDown3.ReadOnly = true;
             numericUpDown3.Size = new Size(82, 23);
             numericUpDown3.TabIndex = 6;
             // 
             // numericUpDown2
             // 
             numericUpDown2.Location = new Point(178, 327);
+            numericUpDown2.Maximum = new decimal(new int[] { 1874919423, 2328306, 0, 0 });
             numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.ReadOnly = true;
             numericUpDown2.Size = new Size(82, 23);
             numericUpDown2.TabIndex = 5;
             // 
             // numericUpDown1
             // 
             numericUpDown1.Location = new Point(178, 356);
+            numericUpDown1.Maximum = new decimal(new int[] { 1874919423, 2328306, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.ReadOnly = true;
             numericUpDown1.Size = new Size(82, 23);
             numericUpDown1.TabIndex = 4;
             // 
