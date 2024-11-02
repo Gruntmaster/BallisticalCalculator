@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             groupBox2 = new GroupBox();
             outputTextBox = new TextBox();
             groupBox3 = new GroupBox();
@@ -37,29 +38,31 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            numericUpDown3 = new NumericUpDown();
-            numericUpDown2 = new NumericUpDown();
-            numericUpDown1 = new NumericUpDown();
+            numericMuzzleVelocity = new NumericUpDown();
+            numericBallisticCoefficient = new NumericUpDown();
+            numericDistanceToTarget = new NumericUpDown();
             buttonCalculateResult = new Button();
             buttonEditObject = new Button();
             buttonRefresh = new Button();
             buttonCreateNew = new Button();
+            bulletPictureBox = new PictureBox();
+            timer1 = new System.Windows.Forms.Timer(components);
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericMuzzleVelocity).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericBallisticCoefficient).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericDistanceToTarget).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bulletPictureBox).BeginInit();
             SuspendLayout();
             // 
             // groupBox2
             // 
             groupBox2.Controls.Add(outputTextBox);
-            groupBox2.Dock = DockStyle.Fill;
             groupBox2.Font = new Font("Consolas", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            groupBox2.Location = new Point(266, 0);
+            groupBox2.Location = new Point(708, 300);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(361, 450);
+            groupBox2.Size = new Size(263, 150);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "Results";
@@ -71,7 +74,7 @@
             outputTextBox.Multiline = true;
             outputTextBox.Name = "outputTextBox";
             outputTextBox.ScrollBars = ScrollBars.Vertical;
-            outputTextBox.Size = new Size(355, 428);
+            outputTextBox.Size = new Size(257, 128);
             outputTextBox.TabIndex = 0;
             // 
             // groupBox3
@@ -79,9 +82,9 @@
             groupBox3.Controls.Add(listBox);
             groupBox3.Dock = DockStyle.Right;
             groupBox3.Font = new Font("Consolas", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            groupBox3.Location = new Point(627, 0);
+            groupBox3.Location = new Point(708, 0);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(347, 450);
+            groupBox3.Size = new Size(266, 450);
             groupBox3.TabIndex = 5;
             groupBox3.TabStop = false;
             groupBox3.Text = "Added objects";
@@ -94,7 +97,7 @@
             listBox.Location = new Point(3, 19);
             listBox.Name = "listBox";
             listBox.ScrollAlwaysVisible = true;
-            listBox.Size = new Size(341, 428);
+            listBox.Size = new Size(260, 428);
             listBox.TabIndex = 0;
             listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;
             // 
@@ -104,9 +107,9 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(numericUpDown3);
-            groupBox1.Controls.Add(numericUpDown2);
-            groupBox1.Controls.Add(numericUpDown1);
+            groupBox1.Controls.Add(numericMuzzleVelocity);
+            groupBox1.Controls.Add(numericBallisticCoefficient);
+            groupBox1.Controls.Add(numericDistanceToTarget);
             groupBox1.Controls.Add(buttonCalculateResult);
             groupBox1.Controls.Add(buttonEditObject);
             groupBox1.Controls.Add(buttonRefresh);
@@ -157,32 +160,32 @@
             label1.TabIndex = 7;
             label1.Text = "Muzzle Velocity:";
             // 
-            // numericUpDown3
+            // numericMuzzleVelocity
             // 
-            numericUpDown3.Location = new Point(178, 298);
-            numericUpDown3.Maximum = new decimal(new int[] { 1874919423, 2328306, 0, 0 });
-            numericUpDown3.Name = "numericUpDown3";
-            numericUpDown3.ReadOnly = true;
-            numericUpDown3.Size = new Size(82, 23);
-            numericUpDown3.TabIndex = 6;
+            numericMuzzleVelocity.Location = new Point(178, 298);
+            numericMuzzleVelocity.Maximum = new decimal(new int[] { 1874919423, 2328306, 0, 0 });
+            numericMuzzleVelocity.Name = "numericMuzzleVelocity";
+            numericMuzzleVelocity.ReadOnly = true;
+            numericMuzzleVelocity.Size = new Size(82, 23);
+            numericMuzzleVelocity.TabIndex = 6;
             // 
-            // numericUpDown2
+            // numericBallisticCoefficient
             // 
-            numericUpDown2.Location = new Point(178, 327);
-            numericUpDown2.Maximum = new decimal(new int[] { 1874919423, 2328306, 0, 0 });
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.ReadOnly = true;
-            numericUpDown2.Size = new Size(82, 23);
-            numericUpDown2.TabIndex = 5;
+            numericBallisticCoefficient.Location = new Point(178, 327);
+            numericBallisticCoefficient.Maximum = new decimal(new int[] { 1874919423, 2328306, 0, 0 });
+            numericBallisticCoefficient.Name = "numericBallisticCoefficient";
+            numericBallisticCoefficient.ReadOnly = true;
+            numericBallisticCoefficient.Size = new Size(82, 23);
+            numericBallisticCoefficient.TabIndex = 5;
             // 
-            // numericUpDown1
+            // numericDistanceToTarget
             // 
-            numericUpDown1.Location = new Point(178, 356);
-            numericUpDown1.Maximum = new decimal(new int[] { 1874919423, 2328306, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.ReadOnly = true;
-            numericUpDown1.Size = new Size(82, 23);
-            numericUpDown1.TabIndex = 4;
+            numericDistanceToTarget.Location = new Point(178, 356);
+            numericDistanceToTarget.Maximum = new decimal(new int[] { 1874919423, 2328306, 0, 0 });
+            numericDistanceToTarget.Name = "numericDistanceToTarget";
+            numericDistanceToTarget.ReadOnly = true;
+            numericDistanceToTarget.Size = new Size(82, 23);
+            numericDistanceToTarget.TabIndex = 4;
             // 
             // buttonCalculateResult
             // 
@@ -192,6 +195,7 @@
             buttonCalculateResult.TabIndex = 3;
             buttonCalculateResult.Text = "Calculate";
             buttonCalculateResult.UseVisualStyleBackColor = true;
+            buttonCalculateResult.Click += buttonCalculateResult_Click;
             // 
             // buttonEditObject
             // 
@@ -223,11 +227,21 @@
             buttonCreateNew.UseVisualStyleBackColor = true;
             buttonCreateNew.Click += buttonCreateNew_Click;
             // 
+            // bulletPictureBox
+            // 
+            bulletPictureBox.Dock = DockStyle.Fill;
+            bulletPictureBox.Location = new Point(266, 0);
+            bulletPictureBox.Name = "bulletPictureBox";
+            bulletPictureBox.Size = new Size(442, 450);
+            bulletPictureBox.TabIndex = 1;
+            bulletPictureBox.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(974, 450);
+            Controls.Add(bulletPictureBox);
             Controls.Add(groupBox2);
             Controls.Add(groupBox3);
             Controls.Add(groupBox1);
@@ -238,9 +252,10 @@
             groupBox3.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericMuzzleVelocity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericBallisticCoefficient).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericDistanceToTarget).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bulletPictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -254,13 +269,15 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private NumericUpDown numericUpDown3;
-        private NumericUpDown numericUpDown2;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown numericMuzzleVelocity;
+        private NumericUpDown numericBallisticCoefficient;
+        private NumericUpDown numericDistanceToTarget;
         private Button buttonCalculateResult;
         private Button buttonEditObject;
         private Button buttonRefresh;
         private Button buttonCreateNew;
         private Button buttonDelete;
+        private PictureBox bulletPictureBox;
+        private System.Windows.Forms.Timer timer1;
     }
 }

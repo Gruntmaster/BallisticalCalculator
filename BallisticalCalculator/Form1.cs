@@ -8,7 +8,7 @@ namespace BallisticalCalculator
         public Form1()
         {
             InitializeComponent();
-           
+
         }
 
         private void buttonCreateNew_Click(object sender, EventArgs e)
@@ -206,9 +206,9 @@ namespace BallisticalCalculator
             if (parameters != null)
             {
                 // Обновляем поля параметров на форме
-                numericUpDown3.Text = parameters[1]; // Muzzle Velocity
-                numericUpDown2.Text = parameters[2]; // Ballistic Coefficient
-                numericUpDown1.Text = parameters[3]; // Distance to Target
+                numericMuzzleVelocity.Text = parameters[1]; // Muzzle Velocity
+                numericBallisticCoefficient.Text = parameters[2]; // Ballistic Coefficient
+                numericDistanceToTarget.Text = parameters[3]; // Distance to Target
             }
             else
             {
@@ -220,11 +220,48 @@ namespace BallisticalCalculator
         // Метод для очистки полей параметров
         private void ClearParameterFields()
         {
-            numericUpDown3.Text = "";
-            numericUpDown2.Text = "";
-            numericUpDown1.Text = "";
+            numericMuzzleVelocity.Text = "";
+            numericBallisticCoefficient.Text = "";
+            numericDistanceToTarget.Text = "";
         }
 
+        private void buttonCalculateResult_Click(object sender, EventArgs e)
+        {
+            // Проверяем, выбран ли объект в ListBox
+            if (listBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select an object from the list.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Получаем выбранное название объекта
+            string selectedName = listBox.SelectedItem.ToString();
+
+            try
+            {
+                // Извлекаем значения из текстовых полей и преобразуем их в числа
+                double muzzleVelocity = double.Parse(numericMuzzleVelocity.Text);
+                double ballisticCoefficient = double.Parse(numericBallisticCoefficient.Text);
+                double distanceToTarget = double.Parse(numericDistanceToTarget.Text);
+
+                // Выполняем расчет по формуле
+                double result = muzzleVelocity * ballisticCoefficient * (distanceToTarget / 1000);
+
+                // Формируем строку результата в формате "<Название объекта>: <Результат>"
+                string resultText = $"{selectedName}: {result:F2}";
+
+                // Добавляем результат на новую строку в textBoxResult
+                outputTextBox.AppendText(resultText + Environment.NewLine);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Input error: please make sure all parameters are numbers.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
     }
 }
