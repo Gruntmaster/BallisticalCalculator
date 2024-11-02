@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             groupBox2 = new GroupBox();
             outputTextBox = new TextBox();
             groupBox3 = new GroupBox();
@@ -45,15 +46,15 @@
             buttonEditObject = new Button();
             buttonRefresh = new Button();
             buttonCreateNew = new Button();
-            bulletPictureBox = new PictureBox();
-            timer1 = new System.Windows.Forms.Timer(components);
+            bulletAnimator = new PictureBox();
+            bulletTimer = new System.Windows.Forms.Timer(components);
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericMuzzleVelocity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericBallisticCoefficient).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericDistanceToTarget).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)bulletPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bulletAnimator).BeginInit();
             SuspendLayout();
             // 
             // groupBox2
@@ -227,21 +228,22 @@
             buttonCreateNew.UseVisualStyleBackColor = true;
             buttonCreateNew.Click += buttonCreateNew_Click;
             // 
-            // bulletPictureBox
+            // bulletAnimator
             // 
-            bulletPictureBox.Dock = DockStyle.Fill;
-            bulletPictureBox.Location = new Point(266, 0);
-            bulletPictureBox.Name = "bulletPictureBox";
-            bulletPictureBox.Size = new Size(442, 450);
-            bulletPictureBox.TabIndex = 1;
-            bulletPictureBox.TabStop = false;
+            bulletAnimator.Image = (Image)resources.GetObject("bulletAnimator.Image");
+            bulletAnimator.Location = new Point(282, 209);
+            bulletAnimator.Name = "bulletAnimator";
+            bulletAnimator.Size = new Size(62, 25);
+            bulletAnimator.SizeMode = PictureBoxSizeMode.Zoom;
+            bulletAnimator.TabIndex = 1;
+            bulletAnimator.TabStop = false;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(974, 450);
-            Controls.Add(bulletPictureBox);
+            Controls.Add(bulletAnimator);
             Controls.Add(groupBox2);
             Controls.Add(groupBox3);
             Controls.Add(groupBox1);
@@ -255,7 +257,7 @@
             ((System.ComponentModel.ISupportInitialize)numericMuzzleVelocity).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericBallisticCoefficient).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericDistanceToTarget).EndInit();
-            ((System.ComponentModel.ISupportInitialize)bulletPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bulletAnimator).EndInit();
             ResumeLayout(false);
         }
 
@@ -277,7 +279,7 @@
         private Button buttonRefresh;
         private Button buttonCreateNew;
         private Button buttonDelete;
-        private PictureBox bulletPictureBox;
-        private System.Windows.Forms.Timer timer1;
+        private PictureBox bulletAnimator;
+        private System.Windows.Forms.Timer bulletTimer;
     }
 }

@@ -8,7 +8,6 @@ namespace BallisticalCalculator
         public Form1()
         {
             InitializeComponent();
-
         }
 
         private void buttonCreateNew_Click(object sender, EventArgs e)
@@ -47,15 +46,15 @@ namespace BallisticalCalculator
             // Read lines and add them to ListBox
             string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
 
-            // Пропускаем первую строку с заголовком и добавляем только название в ListBox
-            foreach (string line in lines.Skip(1)) // Начинаем со второй строки, чтобы пропустить заголовок
+            // Skip the first line with the header and add only names to the ListBox
+            foreach (string line in lines.Skip(1)) // Start from the second line to skip the header
             {
-                // Разделяем строку по запятым, чтобы получить поля
+                // Split the line by commas to get fields
                 var fields = line.Split(',');
 
                 if (fields.Length > 0)
                 {
-                    // Добавляем только название (первый элемент) в ListBox
+                    // Add only the name (first element) to the ListBox
                     listBox.Items.Add(fields[0]);
                 }
             }
@@ -63,45 +62,45 @@ namespace BallisticalCalculator
 
         private void buttonEditObject_Click(object sender, EventArgs e)
         {
-            // Проверяем, выбран ли объект в ListBox
+            // Check if an object is selected in the ListBox
             if (listBox.SelectedItem != null)
             {
-                // Получаем выбранное название из ListBox
+                // Get the selected name from the ListBox
                 string selectedName = listBox.SelectedItem.ToString();
 
-                // Путь к файлу
+                // File path
                 string filePath = @"C:\Users\Msi\source\repos\BallisticalCalculator\BallisticalCalculator\bullets.csv";
 
-                // Проверяем, существует ли файл
+                // Check if the file exists
                 if (!File.Exists(filePath))
                 {
                     MessageBox.Show("CSV файл не найден. Нечего редактировать.");
                     return;
                 }
 
-                // Читаем все строки и находим запись с нужным названием
+                // Read all lines and find the entry with the desired name
                 string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
                 string[] parameters = null;
 
-                foreach (string line in lines.Skip(1)) // Пропускаем заголовок
+                foreach (string line in lines.Skip(1)) // Skip the header
                 {
                     var fields = line.Split(',');
-                    if (fields.Length > 0 && fields[0] == selectedName) // Сравниваем название
+                    if (fields.Length > 0 && fields[0] == selectedName) // Compare the name
                     {
-                        parameters = fields; // Сохраняем параметры, если нашли
+                        parameters = fields; // Save parameters if found
                         break;
                     }
                 }
 
                 if (parameters != null)
                 {
-                    // Создаем форму CreateNewForm с текущими параметрами для редактирования
+                    // Create the CreateNewForm with current parameters for editing
                     using (NewObjectForm createNewForm = new NewObjectForm(parameters))
                     {
                         createNewForm.ShowDialog();
                     }
 
-                    // Обновляем ListBox после закрытия формы, чтобы отобразить изменения
+                    // Update ListBox after closing the form to reflect changes
                     UpdateListBox();
                 }
                 else
@@ -117,27 +116,27 @@ namespace BallisticalCalculator
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            // Проверяем, выбран ли объект в ListBox
+            // Check if an object is selected in the ListBox
             if (listBox.SelectedItem != null)
             {
-                // Получаем выбранную строку из ListBox
+                // Get the selected line from the ListBox
                 string selectedLine = listBox.SelectedItem.ToString();
 
-                // Извлекаем название из выбранной строки (предполагая, что оно первое)
+                // Extract the name from the selected line (assuming it is the first)
                 string nameToDelete = selectedLine.Split(',')[0];
 
-                // Подтверждаем удаление у пользователя
+                // Confirm deletion with the user
                 var result = MessageBox.Show($"Вы уверены, что хотите удалить '{nameToDelete}'?", "Подтверждение удаления", MessageBoxButtons.YesNo);
 
                 if (result == DialogResult.Yes)
                 {
-                    // Путь к файлу
+                    // File path
                     string filePath = @"C:\Users\Msi\source\repos\BallisticalCalculator\BallisticalCalculator\bullets.csv";
 
-                    // Удаляем запись из CSV
+                    // Delete the entry from the CSV
                     DeleteFromCsvFile(filePath, nameToDelete);
 
-                    // Обновляем ListBox после удаления
+                    // Update ListBox after deletion
                     UpdateListBox();
 
                     MessageBox.Show("Объект успешно удален из CSV файла.");
@@ -151,52 +150,52 @@ namespace BallisticalCalculator
 
         private void DeleteFromCsvFile(string filePath, string nameToDelete)
         {
-            // Читаем все строки из файла
+            // Read all lines from the file
             var lines = File.ReadAllLines(filePath, Encoding.UTF8).ToList();
 
-            // Удаляем строки, соответствующие имени
-            for (int i = lines.Count - 1; i >= 0; i--) // проходим с конца, чтобы не сбивать индексы
+            // Remove lines that match the name
+            for (int i = lines.Count - 1; i >= 0; i--) // Looping from the end to avoid index issues
             {
-                if (lines[i].StartsWith(nameToDelete + ",")) // ищем по имени
+                if (lines[i].StartsWith(nameToDelete + ",")) // Search by name
                 {
-                    lines.RemoveAt(i); // удаляем строку
+                    lines.RemoveAt(i); // Remove the line
                 }
             }
 
-            // Записываем все строки обратно в файл
+            // Write all lines back to the file
             File.WriteAllLines(filePath, lines, Encoding.UTF8);
         }
 
         private void listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Проверяем, выбран ли элемент
+            // Check if an item is selected
             if (listBox.SelectedItem == null)
             {
                 ClearParameterFields();
                 return;
             }
 
-            // Получаем выбранное название
+            // Get the selected name
             string selectedName = listBox.SelectedItem.ToString();
 
-            // Путь к файлу
+            // File path
             string filePath = @"C:\Users\Msi\source\repos\BallisticalCalculator\BallisticalCalculator\bullets.csv";
 
-            // Проверяем, существует ли файл
+            // Check if the file exists
             if (!File.Exists(filePath))
             {
                 MessageBox.Show("CSV файл не найден. Невозможно отобразить параметры.");
                 return;
             }
 
-            // Читаем файл и ищем запись с выбранным названием
+            // Read the file and search for the entry with the selected name
             string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
             string[] parameters = null;
 
-            foreach (string line in lines.Skip(1)) // Пропускаем заголовок
+            foreach (string line in lines.Skip(1)) // Skip the header
             {
                 var fields = line.Split(',');
-                if (fields.Length >= 4 && fields[0] == selectedName) // Проверяем название
+                if (fields.Length >= 4 && fields[0] == selectedName) // Check the name
                 {
                     parameters = fields;
                     break;
@@ -205,7 +204,7 @@ namespace BallisticalCalculator
 
             if (parameters != null)
             {
-                // Обновляем поля параметров на форме
+                // Update the parameter fields on the form
                 numericMuzzleVelocity.Text = parameters[1]; // Muzzle Velocity
                 numericBallisticCoefficient.Text = parameters[2]; // Ballistic Coefficient
                 numericDistanceToTarget.Text = parameters[3]; // Distance to Target
@@ -217,7 +216,7 @@ namespace BallisticalCalculator
             }
         }
 
-        // Метод для очистки полей параметров
+        // Method to clear parameter fields
         private void ClearParameterFields()
         {
             numericMuzzleVelocity.Text = "";
@@ -227,30 +226,30 @@ namespace BallisticalCalculator
 
         private void buttonCalculateResult_Click(object sender, EventArgs e)
         {
-            // Проверяем, выбран ли объект в ListBox
+            // Check if an object is selected in the ListBox
             if (listBox.SelectedItem == null)
             {
                 MessageBox.Show("Please select an object from the list.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Получаем выбранное название объекта
+            // Get the selected object name
             string selectedName = listBox.SelectedItem.ToString();
 
             try
             {
-                // Извлекаем значения из текстовых полей и преобразуем их в числа
+                // Extract values from text fields and convert them to numbers
                 double muzzleVelocity = double.Parse(numericMuzzleVelocity.Text);
                 double ballisticCoefficient = double.Parse(numericBallisticCoefficient.Text);
                 double distanceToTarget = double.Parse(numericDistanceToTarget.Text);
 
-                // Выполняем расчет по формуле
+                // Perform the calculation using the formula
                 double result = muzzleVelocity * ballisticCoefficient * (distanceToTarget / 1000);
 
-                // Формируем строку результата в формате "<Название объекта>: <Результат>"
+                // Format the result string as "<Object Name>: <Result>"
                 string resultText = $"{selectedName}: {result:F2}";
 
-                // Добавляем результат на новую строку в textBoxResult
+                // Append the result to the outputTextBox on a new line
                 outputTextBox.AppendText(resultText + Environment.NewLine);
             }
             catch (FormatException)
